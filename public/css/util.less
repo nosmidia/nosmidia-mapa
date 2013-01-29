@@ -1,0 +1,93 @@
+/* ==========>> =Mixins
+============================================================= */
+.cf(){
+    zoom: 1;
+
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after { clear: both }
+}
+.ir() {
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+}
+.box-shadow(@value) {
+    -moz-box-shadow: @value;
+    -webkit-box-shadow: @value;
+    box-shadow: @value;
+}
+.double-box-shadow(@value, @value2) {
+    -moz-box-shadow: @value, @value2;
+    -webkit-box-shadow: @value, @value2;
+    box-shadow: @value, @value2;
+}
+.border-radius(@rad: 4px) {
+    -moz-border-radius: @rad;
+    -webkit-border-radius: @rad;
+    border-radius: @rad;
+}
+.padding-box() {
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+.opacity(@alpha: 70) {
+    filter: alpha(opacity=@alpha);
+    -moz-opacity: @alpha/100;
+    opacity: @alpha/100;
+}
+.transition(@d: 0.2s, @t: all) {
+    -webkit-transition: @t @d ease-in;
+    -moz-transition: @t @d ease-in;
+    -o-transition: @t @d ease-in;
+    transition: @t @d ease-in;
+}
+.rotate(@deg) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    zoom: 1;
+}
+.gradient(@c1, @c2) {
+    background-color: @c1;
+    background-image: -webkit-linear-gradient(top, @c1, @c2);
+    background-image: -moz-linear-gradient(top, @c1, @c2);
+    background-image: -o-linear-gradient(top, @c1, @c2);
+    filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorStr="@c1~", EndColorStr="@c2~", GradientType=0)";
+    background: linear-gradient(top, @c1 0%,@c2 100%);
+}
+
+/* ==========>> =Grid System
+============================================================= */
+@column-width: 40;
+@gutter-width: 20;
+@columns: 16;
+
+@gridsystem-width: (@column-width*@columns) + (@gutter-width*@columns) * 1px;
+
+//@total-width: 100%;
+@total-width: 960px;
+
+.column(@x) {
+	width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width);
+}
+.grid(@x, @columns:@columns) {
+	@margins: @total-width*((@gutter-width*.5)/@gridsystem-width);
+
+	width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width);
+	margin-left: @margins;
+	margin-right: @margins;
+	float: left;
+}
+.margin-left(@offset:1) {
+	margin-left: @total-width*(((@gutter-width+@column-width)*@offset) / @gridsystem-width) + @total-width*((@gutter-width*.5)/@gridsystem-width);
+}
+.margin-right(@offset:1) {
+	margin-right: @total-width*(((@gutter-width+@column-width)*@offset) / @gridsystem-width) + @total-width*((@gutter-width*.5)/@gridsystem-width);
+}

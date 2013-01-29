@@ -1,0 +1,17 @@
+<?php 
+
+	$controllers = array(
+		'index'=>'Admin Home', 
+		'categorias'=>'Categorias',
+		'pontos'=>'Pontos no mapa',
+	);
+	
+?>
+
+<ul class="box">
+	<?php foreach($controllers as $key => $value ) : ?>
+		<?php $class = ($this->path()->getController() == $key ) ? 'submenu-active' : ''; ?>
+		<li id="<?php echo $class; ?>"><a href="<?php echo URL; ?>/adm/<?php echo $key; ?>"><?php echo $value; ?></a></li>
+	<?php endforeach; ?>
+<!--	<li id="submenu-active"><a href="<?php  echo URL; ?>/adm/destaques/">Destaques</a></li>-->
+</ul>

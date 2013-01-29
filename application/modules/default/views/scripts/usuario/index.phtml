@@ -1,0 +1,91 @@
+<?php if( ! $this->user ) : ?>
+<div class="modal-form">
+    <header>
+        <i class="icon"></i>
+        <h3>Cadastro/Login</h3>
+
+        <a href="" class="close-modal">Fechar</a>
+    </header>
+
+    <article class='form-overlay'>
+        <div id="form-feedback" class="alert alert-success hide"></div>
+        <div id="loader" class="hide">
+            <div class="wrap alert alert-info">
+                <img src="/images/loader.gif" alt="loading" />  Aguarde...
+            </div>
+        </div>
+
+        <div class="grid-6">
+            <h4>Cadastro</h4>
+
+            <form method="post" action="/" enctype="application/x-www-form-urlencoded" id="signup">
+                <div class='grid-12'>
+                    <?php echo $this->formSignUp->name; ?>
+            </div>
+
+            <div class='grid-12'>
+                <?php echo $this->formSignUp->email; ?>
+            </div>
+
+            <div class='grid-12'>
+                <?php echo $this->formSignUp->password; ?>
+            </div>
+
+            <div class='grid-12'>
+                <?php echo $this->formSignUp->password_confirm; ?>
+            </div>
+
+            <div class='grid-12'>
+                <?php echo $this->formSignUp->submit; ?>
+                </div>
+            </form>
+        </div>
+
+        <div class="grid-6">
+            <h4>Login</h4>
+            <form method="post" action="/" enctype="application/x-www-form-urlencoded" id="signin">
+                <div class='grid-12'>
+                    <?php echo $this->formSignIn->email; ?>
+                </div>
+
+                <div class='grid-12'>
+                    <?php echo $this->formSignIn->password; ?>
+                </div>
+
+                <div class='grid-12'>
+                    <?php echo $this->formSignIn->submit; ?>
+                    <button class="btn btn-large btn-primary" id="fb-auth">Login com Facebook</button>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="grid-12">
+            <small>* campos obrigatórios.</small>
+        </div>
+    </article>
+</div>
+
+
+<?php else : ?>
+<div class="modal-form">
+    <header>
+        <i class="icon"></i>
+        <h3>Adicionar Ponto no mapa</h3>
+	</header>
+
+    <article class='form-overlay'>
+        <div id="form-feedback" class="alert alert-success">Carregando próximo passo....</div>
+        <div id="loader" class="">
+            <div class="wrap alert alert-info">
+                <img src="/images/loader.gif" alt="loading" />  Aguarde...
+            </div>
+        </div>
+	</article>
+</div>
+<script type="text/javascript">
+	goToAddMarkerStep3();
+</script>
+<?php endif; ?>
+
+

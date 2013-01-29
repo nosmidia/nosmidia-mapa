@@ -1,0 +1,27 @@
+<?php if($this->result): ?>
+<?php $result = $this->result->current(); ?>
+<h1><?php echo $result->title; ?></h1>
+<p>
+	<small>
+		<strong><?php echo $result->name; ?></strong><br/>
+		<?php echo Project_StaticData::getMarkerContentType($result->type); ?>
+	</small>
+</p>
+
+
+<?php if( $result->type == Project_StaticData::MARKER_CONTENT_TYPE_YOUTUBE ) : ?>
+	<iframe width="420" height="315" src="http://www.youtube.com/embed/<?php echo $result->content; ?>" frameborder="0" allowfullscreen></iframe>
+<?php endif; ?>
+
+<?php if( $result->type == Project_StaticData::MARKER_CONTENT_TYPE_IMAGE ) : ?>
+	<img src="<?php echo $result->content; ?>" />
+<?php endif; ?>
+
+<?php if( $result->type == Project_StaticData::MARKER_CONTENT_TYPE_TEXT ) : ?>
+	<pre><?php echo $result->content; ?></pre>
+<?php endif; ?>
+
+
+<?php else : ?>
+<h2>Não encontrado.</h2>
+<?php endif;?>

@@ -1,0 +1,208 @@
+<!doctype html>
+
+<!--[if lt IE 7]><html class='no-js ie lt-ie9 lt-ie8 lt-ie7' lang='pt-BR'><![endif]-->
+<!--[if IE 7]><html class='no-js ie lt-ie9 lt-ie8 ie7' lang='pt-BR'><![endif]-->
+<!--[if IE 8]><html class='no-js ie lt-ie9 ie8' lang='pt-BR'><![endif]-->
+<!--[if IE 9 ]> <html class='no-js ie ie9' lang='pt-BR'> <![endif]-->
+<!--[if gt IE 9]><!--><html class='no-js' lang='pt-BR'><!--<![endif]-->
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta name='description' content='Descriptions'>
+        <title><?php echo SITE_NAME ?> | Mapeamento Cultural</title>
+        <link rel='author' href='<?php echo URL; ?>/humans.txt'>
+        <link rel='apple-touch-icon' href='//ssl.gstatic.com/music/fe/259fec9bb8e68bc7d4400b26cfa596a4/favicon.ico'>
+        <link rel='shortcut icon' href='//ssl.gstatic.com/music/fe/259fec9bb8e68bc7d4400b26cfa596a4/favicon.ico'>
+        <link rel='stylesheet' href='<?php echo URL; ?>/css/reset.css'>
+        <link rel='stylesheet' href='<?php echo URL; ?>/css/style.css?v=2'>
+
+        <!-- HTML5/CSS3 For legacy browsers -->
+        <!--[if lt IE 9]>
+            <script src='<?php echo URL; ?>/js/lib/html5.js'></script>
+        <![endif]-->
+        <!--[if lt IE 8]>
+            <script src='<?php echo URL; ?>/js/lib/ie8.js'></script>
+        <![endif]-->
+        <script src='<?php echo URL; ?>/js/lib/modernizr.js'></script>
+
+        <!-- Google Maps -->
+        <script src='https://maps.google.com/maps/api/js?sensor=true'></script>
+
+        <?php if( APPLICATION_ENV == 'production' ) : ?>
+            <!-- Google Analytics -->
+            <script>
+                window._gaq = [
+                    ['_setAccount', 'UA-31289408-1'],
+                    ['_trackPageview'],
+                    ['_trackPageLoadTime']
+                ];
+                Modernizr.load({
+                    load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+                });
+            </script>
+        <?php endif; ?>
+        <!-- <?php echo APPLICATION_ENV; echo date(' Y/m/d H:i:s'); ?> -->
+    </head>
+
+    <body>
+    <div id='fb-root' data-fb-id='<?php echo FACEBOOK_APPID; ?>'></div>
+        <div class='container'>
+            <div class='wrapper'>
+            	<div id="user-status" class='logged-user hide'></div>
+
+
+                <header>
+                    <div class='logo-vivo'>
+                        <img src='<?php echo URL ?>/images/logo-vivo-apresenta.jpg' alt='Vivo Arte.Mov apresenta' title='Vivo Arte.Mov apresenta'>
+                    </div>
+
+                    <ul class='social-share'>
+                        <li class='twitter'>
+                            <a href='https://twitter.com/share' class='twitter-share-button' data-url='http://www.nosmidia.com.br/' data-via='nosmidia' data-lang='pt'>Tweetar</a>
+                        </li>
+
+                        <li class='facebook'>
+                         	<fb:like href='<?php echo URL; ?>' layout='button_count' data-send='false' data-layout='button_count' data-width='450' data-show-faces='false' action="like" colorscheme="light"></fb:like>
+<!--                            <div class='fb-like' data-href='http://www.nosmidia.com.br/' data-send='false' data-layout='button_count' data-width='450' data-show-faces='false'></div>-->
+                        </li>
+                    </ul>
+
+                    <nav class='site-nav'>
+                        <h1 class='logo-nos-midia'>
+                            <a href='<?php echo URL ?>'>
+                                <img src='<?php echo URL. '/images/logo-nos-midia-v2.png'; ?>' alt='Nós Mídia - Mapa Cultural' title='Nós Mídia - Mapa Cultural'>
+                            </a>
+                        </h1>
+
+                        <ul>
+                            <li>
+                                <a href='/index/o-projeto/' title='Conheça o nós mídia' class='deep-link'>O projeto</a>
+                            </li>
+
+                            <li>
+                                <a href='/mapa/cadastro/' title='Adicione um ponto ao mapa' class='deep-link'>Adicione um ponto</a>
+                            </li>
+
+                            <li>
+                                <a href='http://www.nosmidia.com.br/e-books/' title='E-Books'>E-Books</a>
+                            </li>
+
+                            <li>
+                                <a href='http://www.nosmidia.com.br/contato/' title='Entre em contato conosco'>Contato</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <figure class='about-video'>
+                        <img src='<?php echo URL ?>/images/video-example.jpg' alt='Conheça o nós mídia' title='Conheça o nós mídia'>
+                        <figcaption>Aprenda a adicionar pontos</figcaption>
+                        <a href='' class='play-video'>Aprenda a adicionar pontos</a>
+                    </figure>
+                </header>
+
+                <section class='content'>
+                    <?php echo $this->layout()->content; ?>
+                </section>
+
+                <footer>
+                    <div class='search-form'>
+                        <form action='/' method='get'  id='search'>
+                            <label for='s'>Buscar</label>
+                            <input type='text' name='s' id='s' value=''>
+                            <input type='submit' class='btn' value='Buscar' id='submit-search' name='submit'>
+                        </form>
+                    </div>
+
+                    <div class='sponsors'>
+                        <img src='<?php echo URL ?>/images/logo-creative-commons.jpg' alt='Creative Commons' title='Creative Commons'>
+
+                        <article class='sponsor'>
+                            <h3>Patrocínio</h3>
+
+                            <a href='http://www.vivo.com.br/' target='_blank'>
+                                <img src='<?php echo URL ?>/images/logo-vivo.png' alt='Vivo' title='Vivo'>
+                            </a>
+                        </article>
+
+                        <article class='sponsor'>
+                            <h3>Incentivo</h3>
+
+                            <a href='http://www.cultura.mg.gov.br/' target='_blank'>
+                                <img src='<?php echo URL ?>/images/logo-governo-de-minas.png' alt='Lei estadual de incentivo a cultura - Governo de Minas' title='Lei estadual de incentivo a cultura - Governo de Minas'>
+                            </a>
+                        </article>
+                    </div>
+                </footer>
+            </div>
+
+            <div id='map' class='google-map'></div>
+
+            <div id='global-feedback'>
+                <span></span>
+            </div>
+        </div>
+
+        <div class='modal-container hide'>
+            <div class='modal-content'>
+            <!-- <header>
+                    <div class="icon">
+                        <img src="/images/icon-marker.png" alt="Comer">
+                    </div>
+
+                    <h3>Para comer</h3>
+
+                    <div class='marker-meta'>
+                        postado por: <strong>Emerson Broga</strong> | <strong>19/05/2012 às 20h30</strong>
+                    </div>
+                    <a href='' class='close-modal'>Fechar</a>
+                </header>
+
+                <article>
+                    <h2>Exemplo de título com muito texto e por isso tem que quebrar em duas linhas</h2>
+
+                    <img src='http://lorempixel.com/460/310' alt='Placeholder'>
+                </article>
+
+                <footer>
+                    <ul class='social-share'>
+                        <li class='twitter'>
+                            <a href='https://twitter.com/share' class='twitter-share-button' data-url='http://www.nosmidia.com.br/' data-via='nosmidia' data-lang='pt'>Tweetar</a>
+                        </li>
+
+                        <li class='facebook'>
+                            <div class='fb-like' data-href='http://www.nosmidia.com.br/' data-send='true' data-layout='button_count' data-width='450' data-show-faces='false'></div>
+                        </li>
+
+                        <li class="short-link">http://goo.gl/kdjhs93n</li>
+                    </ul>
+                </footer>
+                -->
+            </div><!-- modal-content -->
+        </div>
+
+        <!-- jQuery -->
+        <script src='//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+        <script>window.jQuery || document.write("<script src='<?php echo URL ?>/js/lib/jquery-1.7.1.min.js'>\x3C/script>")</script>
+
+        <!-- Facebook Scripts -->
+        
+
+        <!-- Twitter Scripts -->
+        <script id="deferedjs" type="text/javascript">
+            var b = document.createElement('script');
+            b.type = 'text/javascript';
+            b.src = ('http://platform.twitter.com/widgets.js');
+            var a=document.getElementById("deferedjs");
+            a.parentNode.insertBefore(b,a);
+        </script>
+
+        <!-- Site Scripts -->
+        <script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js'></script>
+        <script src='<?php echo URL; ?>/js/jquery.ba-hashchange.min.js'></script>
+        <script src='<?php echo URL; ?>/js/plugins/jquery.infieldlabel.min.js'></script>
+        <script src='<?php echo URL; ?>/js/global.js'></script>
+        <script src='<?php echo URL; ?>/js/functions.js'></script>
+        <!-- End scripts -->
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<header>
+	<i class="icon"></i>
+    <h3>Adicionar Ponto no mapa</h3>
+	<a class="close-modal">Fechar</a>
+</header>
+
+<article class='form-overlay'>
+	<div id="form-feedback" class="alert alert-success hide"></div>
+	<div id="loader" class="hide">
+    	<div class="wrap alert alert-info">
+        	<img src="/images/loader.gif" alt="loading" />  Aguarde...
+		</div>
+	</div>
+
+    <form method="post" action="/mapa/cadastro" enctype="application/x-www-form-urlencoded" id="addmarker">
+    	<div class="grid-6">
+        	<div class='grid-12'>
+            	<?php echo $this->form->address;        ?>
+			</div>
+
+            <div class='grid-12'>
+            	<?php echo $this->form->neighborhood;   ?>
+			</div>
+
+            <div class='grid-12'>
+            	<?php echo $this->form->state;          ?>
+			</div>
+
+            <div class='grid-12'>
+            	<?php echo $this->form->city;           ?>
+			</div>
+
+            <div class='grid-12'>
+            	<?php echo $this->form->category;       ?>
+			</div>
+			
+			<div class='grid-12'>
+            	<label for="sub_category" class="required">Sub-Categoria</label>
+
+				<select name="sub_category" id="sub_category">
+					<option value="" label="Escolha...">Escolha...</option>
+				</select>  
+			</div> 
+			
+		</div>
+
+        <div class="grid-6">
+        	             
+            
+            <div class='grid-12'>
+            	<?php echo $this->form->title;      ?>
+			</div>
+
+            <div class='grid-12'>
+            	<?php echo $this->form->type;       ?>
+			</div>
+
+            <div class='grid-12'>
+            	<?php echo $this->form->content;    ?>
+			</div>
+			
+            <div class='grid-12'>
+            	<?php echo $this->form->description;    ?>
+			</div>
+
+            <div class='grid-12'>
+            	<?php echo $this->form->submit;     ?>
+			</div>
+		</div>
+
+        <div class='grid-12'>
+        	<img id="map-preview" src="http://maps.google.com/maps/api/staticmap?center=-17.930178,-43.790845&zoom=3&size=960x120&sensor=false" />
+			<input type="hidden" id="latitude" name="latitude" value="0" />
+            <input type="hidden" id="longitude" name="longitude" value="0" />
+		</div>
+
+		<div class="grid-12">
+        	<small>* campos obrigatórios.</small>
+		</div>
+	</form>
+</article>
+

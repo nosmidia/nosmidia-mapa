@@ -1,0 +1,18 @@
+<?php if($this->categories) : ?>
+    <h2>Escolha os filtros de conteúdo:</h2>
+    <a class="close-subcategories">Fechar</a>
+
+    <div class="choose-subcategory">
+        <ul id="choose-subcategory">
+            <?php foreach($this->categories as $category ) : ?>
+                <li>
+                    <input type="checkbox"  name='subcategory-<?php echo $category->id; ?>' id='subcategory-<?php echo $category->id; ?>' value='<?php echo $category->id; ?>'>
+                    <label for="subcategory"><?php echo $category->category; ?></label>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+
+        <button id="filter-subcategory-show-all">Ver todos</button>
+        <button id="filter-subcategory">Filtrar</button>
+    </div>
+<?php endif; ?>

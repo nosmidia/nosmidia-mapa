@@ -1,0 +1,94 @@
+<?php
+	$args = array();
+	
+	if(!empty( $this->params->search )){
+		$args['search'] = $this->params->search;
+	}/*
+	if(!empty( $this->params->categoria )){
+		$args['categoria'] = $this->params->categoria;
+	}
+	*/
+?>
+<div class="pagination box">
+	<p class="f-right">
+	<?php if ($this->pageCount > 1): ?>
+		<!--  Previous page link  -->
+			<?php if (isset($this->previous)): ?>
+				<?php $args['page'] = $this->previous; ?>
+				<a href="<?php echo $this->url( $args ); ?>" title="Página anterior">
+					&laquo;
+				</a> 
+			<?php else: ?>
+				<span class="disabled">&laquo;</span> 
+			<?php endif; ?>
+			
+			<!-- Numbered page links  -->
+			<?php foreach ($this->pagesInRange as $page): ?>
+				<?php if ($page != $this->current): ?>
+					<?php $args['page'] = $page; ?>
+					<a href="<?php echo $this->url( $args ); ?>" title="Página <?php echo $page; ?>">
+				<?php echo $page; ?>
+					</a> 
+				<?php else: ?>
+					<a class="pagination-active" href="#" onclick="return false;"><?php echo $page; ?></a> 
+				<?php endif; ?>
+			<?php endforeach; ?>
+			
+			<!-- Next page link  -->
+			<?php if (isset($this->next)): ?>
+				<?php $args['page'] = $this->next; ?>
+				<a href="<?php echo $this->url( $args ); ?>" title="Próxima Página">
+					&raquo;
+				</a>
+			<?php else: ?>
+				<span class="disabled">&raquo;</span>
+			<?php endif; ?>
+	<?php endif; ?>
+	</p><!-- /f-right -->
+	<p class="f-left">
+	<strong>Total de itens</strong>: <?php echo $this->totalItemCount; ?> &nbsp;
+	
+	<span class="per_page">
+		<?php if( $this->pageCount > 1 ) : ?>
+			<span class="per_page"><strong>Escolher página</strong>:
+			<select onChange="goToPage(this);">
+			<?php 
+			 	for( $i = 1; $i <= $this->pageCount; $i++)
+				{
+					$selected = ( $i == $this->current ) ? 'selected' : '';
+					echo '<option '.$selected.' value="'.$i.'" >'.$i.'</option>';
+					
+				}
+			?>
+			</select>
+		<?php endif;?>
+	</span>
+	</p>
+</div>
+<?php 
+//Link com os parametros para o select de per_page
+$args['page'] 		= 1;
+$args['per_page'] 	= 'new_number';
+$link_per_page		= $this->url($args);
+
+//Link com os parametros para o select de page
+$args['page'] 		= 'new_number';
+unset($args['per_page']);
+$link_page 			= $this->url($args);
+?>
+		
+<!-- Script for select per_page  -->
+<script type="text/javascript">
+	var link_per_page = '<?php echo $link_per_page; ?>';
+	var link_page = '<?php echo $link_page; ?>';
+	function itensPerPage( select )
+	{
+		location.href = link_per_page.replace("new_number", select.value); 
+	}
+	function goToPage( select )
+	{
+		location.href = link_page.replace("new_number", select.value); 
+	}
+</script>
+<!-- #Script for select per_page  -->
+		

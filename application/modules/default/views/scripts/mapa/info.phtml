@@ -1,0 +1,77 @@
+<?php if( $this->map_point ) : ?>
+	<?php 
+		$modal_class = '';
+		
+		$share_url = URL . '/#/mapa/'. $this->map_point->slug; 
+		
+		if( $this->map_point->type == Project_StaticData::MARKER_CONTENT_TYPE_TEXT )
+			$modal_class = 'modal-text';
+		if( $this->map_point->type == Project_StaticData::MARKER_CONTENT_TYPE_YOUTUBE )
+			$modal_class = 'modal-video';
+		if( $this->map_point->type == Project_StaticData::MARKER_CONTENT_TYPE_IMAGE )
+			$modal_class = 'modal-photo';
+	?>
+
+        	<header>
+				<?php if($this->parent) : ?>
+					<div class="icon">
+						<img src="<?php echo Model_Category::markerUrl( $this->parent->icon_file ); ?>" alt="<?php echo $this->parent->category; ?>">
+	                </div>
+					<h3><?php echo $this->map_point->category; ?></h3>
+				<?php else : ?>
+					<h3><?php echo $this->map_point->category; ?></h3>
+				<?php endif; ?>
+				
+				
+                <div class="marker-meta">
+                	postado por: <strong><?php echo $this->map_point->name; ?></strong> | <strong><?php echo date( 'd/m/Y \à\s H\hm' , strtotime($this->map_point->created_at)); ?></strong>
+				</div>
+                <a href="" class="close-modal">Fechar</a>
+			</header>
+			
+			<article>
+				<h2><?php echo $this->map_point->title; ?></h2>
+				
+				<?php if(!empty($this->map_point->description)) : ?>
+					<p><?php echo Model_MapPoint::urlToLink($this->map_point->description); ?></p>
+				<?php endif; ?>
+				
+				<?php if($modal_class == 'modal-text') : ?>
+					<p><?php echo nl2br(stripslashes($this->map_point->content)); ?></p>
+				<?php endif; ?>
+		
+				<?php if($modal_class == 'modal-video') : ?>
+					<iframe width="460" height="345" src="http://www.youtube.com/embed/<?php echo $this->map_point->content; ?>" frameborder="0" allowfullscreen></iframe>
+				<?php endif; ?>
+		
+				<?php if($modal_class == 'modal-photo') : ?>
+					<img src="<?php echo $this->map_point->content; ?>" width="460" />
+				<?php endif; ?>
+			</article>	
+			
+			<footer>
+            	<ul class='social-share'>
+                	<li class='twitter'>
+                    	<a href='https://twitter.com/share' class='twitter-share-button' data-url='<?php echo $share_url; ?>' data-via='nosmidia' data-lang='pt'>Tweetar</a> 
+                    	<script type="text/javascript">twttr.widgets.load();</script>
+					</li>
+
+                    <li class='facebook'>
+                    	<fb:like href='<?php echo $share_url; ?>' layout='button_count' data-send='false' data-layout='button_count' data-width='450' data-show-faces='false' action="like" colorscheme="light"></fb:like>
+                    	<script type="text/javascript">FB.XFBML.parse();</script>
+                 	</li>
+
+					<li class="short-link">
+						<?php 
+							$isGd = new Zend_Service_ShortUrl_IsGd();
+ 							echo $isGd->shorten($share_url);
+						?>
+					</li>
+				</ul>
+			</footer>
+				
+	<?php if( $this->isNew ) : ?>
+	<script type="text/javascript">setHash(  '/mapa/<?php echo $this->map_point->slug; ?>/' );</script>
+	<?php endif; ?>
+	
+<?php endif; ?>

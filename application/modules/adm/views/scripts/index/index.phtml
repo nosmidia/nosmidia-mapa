@@ -1,0 +1,15 @@
+<h1>Painel Administrativo <?php echo SITE_NAME; ?></h1>
+<h3>Links rápidos</h3>
+<?php foreach( $this->buttons as $value ) : ?>
+	<!-- Button -->
+	<div class="btn-box">
+	<div class="btn-top"></div>
+	<div class="btn">
+		<dl>
+			<dt><a href="<?php echo $this->url(array('module'=>'adm','controller'=>$value['controller'], 'action'=>'index'));?>"><?php echo $value['title']; ?></a> (<?php echo $value['count']; ?>)</dt>
+			<dd><?php echo $value['count']; ?><?php echo ($value['count'] == 1 ) ? ' item cadastrado' : ' itens cadastrados' ?>.</dd>
+		</dl>
+	</div> <!-- /btn -->
+	<div class="btn-bottom"></div>
+	</div> <!-- /btn-box -->
+<?php endforeach; ?>

@@ -1,0 +1,43 @@
+<h1><?php echo $this->parent->category; ?>: subcategorias </h1>
+<h3>Lista de subcategorias</h3>
+<p class="box"><a class="btn-create" href="<?php echo $this->url(array('module'=>'adm','controller'=>'categorias','action'=>'add'),null,false); ?>"><span>Adicionar</span></a></p>
+<?php if( $this->categories->count() ): ?>
+<table width="100%">
+<thead>
+	<tr>
+		<th class="header" width="10%">Ícone</th>
+		<th class="header" width="80%">Nome</th>
+		<th class="header" width="10%">Ações</th>
+	</tr>
+</thead>
+
+<tbody>
+	<?php foreach($this->categories as $value ) : ?>
+	<?php $edit_url   = $this->url(array('module'=>'adm','controller'=>'categorias','action'=>'edit','id'=>$value->id),null,false);?>
+	<?php $delete_url = $this->url(array('module'=>'adm','controller'=>'categorias','action'=>'delete','id'=>$value->id),null,false);?>
+	
+	<tr>
+		<td class="t-center"><img src="<?php echo URL . '/uploads/icon_file/'. $value->icon_file; ?>" /></td>
+		<td>
+			<?php echo $value->category; ?>
+			<!-- <?php echo $value->slug; ?> -->
+		</td>
+		<td class="header">
+			<a href="<?php echo $edit_url; ?>" title="Editar"><img src="<?php echo URL; ?>/backend/design/ico-edit.gif" class="ico" alt="Editar" /></a> - 
+			<a href="<?php echo $delete_url; ?>" title="Deletar" class="delete"><img src="<?php echo URL; ?>/backend/design/ico-delete.gif" class="ico" alt="Deletar" /></a>
+		</td>
+	</tr>
+	<?php endforeach; ?>
+</tbody>
+</table>
+
+
+<!-- paginação -->
+<?php echo $this->paginationControl($this->categories ,'Sliding' ,'partials/paginator.phtml', array( 'params' => $this->params)); ?>
+<!-- /paginação -->
+
+
+
+<?php else: ?>
+<p>Nenhum item cadastrado.</p>
+<?php endif;?>

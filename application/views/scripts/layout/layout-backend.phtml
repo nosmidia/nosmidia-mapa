@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="content-language" content="en" />
+	<meta name="robots" content="noindex,nofollow" />
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="<?php echo URL; ?>/backend/css/reset.css" /> <!-- RESET -->
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="<?php echo URL; ?>/backend/css/main.css" /> <!-- MAIN STYLE SHEET -->
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="<?php echo URL; ?>/backend/css/2col.css" title="2col" /> <!-- DEFAULT: 2 COLUMNS -->
+	<link rel="alternate stylesheet" media="screen,projection" type="text/css" href="<?php echo URL; ?>/backend/css/1col.css" title="1col" /> <!-- ALTERNATE: 1 COLUMN -->
+	<!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="<?php echo URL; ?>/backend/css/main-ie6.css" /><![endif]--> <!-- MSIE6 -->
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="<?php echo URL; ?>/backend/css/style.css" /> <!-- GRAPHIC THEME -->
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="<?php echo URL; ?>/backend/css/mystyle.css" /> <!-- WRITE YOUR CSS CODE HERE -->
+	
+	<!-- SCRIPTS -->
+	<script	type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+
+		//Aviso ao excluir.
+		$('.delete','#content').live('click', function(){
+			return confirm('Deseja realmente exluir?'); 
+		});
+
+	});
+	
+	</script>
+
+
+	<title>Sistema Administrativo <?php echo SITE_NAME; ?></title>
+</head>
+
+<body>
+
+<div id="main">
+
+	<!-- Tray -->
+	<div id="tray" class="box">
+
+		<p class="f-left box">
+
+			<!-- Switcher -->
+			<span class="f-left" id="switcher">
+				<a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="<?php echo URL; ?>/backend/design/switcher-1col.gif" alt="1 Column" /></a>
+				<a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="<?php echo URL; ?>/backend/design/switcher-2col.gif" alt="2 Columns" /></a>
+			</span>
+
+			Projeto: <strong><a href="<?php echo URL; ?>" title="Ir para o site" target="nosmidia" ><?php echo SITE_NAME; ?></a></strong>
+
+		</p>
+
+		<?php $user = Model_Admin::getIdentity(); ?>
+		<p class="f-right">User: <strong><a href="#" ><?php echo ($user) ? $user->email : 'Não identificado' ;?></a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="<?php echo URL. '/index/logout'; ?>" id="logout">Log out</a></strong></p>
+
+	</div> <!--  /tray -->
+
+	<hr class="noscreen" />
+
+	<!-- Columns -->
+	<div id="cols" class="box">
+
+		<!-- Aside (Left Column) -->
+		<div id="aside" class="box">
+
+			<div class="padding box">
+				<!-- Logo (Max. width = 200px) -->
+				<p id="logo"><a href="<?php echo URL; ?>" title="Ir para o site" target="nosmidia"><img style="border:none; width: 124px;" src="<?php echo URL. '/images/logo-nos-midia-v2.png'; ?>" alt="<?php echo SITE_NAME; ?>" title="Ver site" /></a></p>
+			</div> <!-- /padding -->
+			<?php echo $this->render('partials/menu.phtml'); ?>
+			
+
+		</div> <!-- /aside -->
+
+		<hr class="noscreen" />
+
+		<!-- Content (Right Column) -->
+		<div id="content" class="box">
+			<!-- Mensagens -->
+			<?php $message = $this->message()->getMessage(); ?>
+
+			<?php if($message->show): ?>
+			    <div id="mensagem" class="msg <?php echo $message->type; ?>" >
+					<span><?php echo $message->message; ?></span>
+			    </div><!-- /mensagem --><br/>
+			<?php else : ?>
+			    <div id="mensagem" class=" hide" >
+			        <strong></strong>
+			        <span></span>
+			    </div>
+			<?php endif; ?>
+			<?php $this->message()->clear(); ?>
+			<!-- /Mensagens -->
+			
+			
+			<?php echo $this->layout()->content; ?>
+		</div> <!-- /content -->
+
+	</div> <!-- /cols -->
+
+	<hr class="noscreen" />
+
+	<!-- Footer -->
+	<div id="footer" class="box">
+		<p class="f-left">&copy; 2012<?php echo ( date('Y') > 2012)? ' - '.date('Y') : '';  ?> <a href="http://www.emersoncarvalho.com/?utm_source=nosmidia&utm_medium=admin&utm_campaign=footer_link" target="_blank">Emerson Carvalho</a></p>
+	</div> <!-- /footer -->
+
+</div> <!-- /main -->
+
+</body>
+</html>

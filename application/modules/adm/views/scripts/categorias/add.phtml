@@ -1,0 +1,19 @@
+<h1>Categorias</h1>
+
+<p class="box"><a class="btn-list" href="<?php echo $this->url(array('module'=>'adm','controller'=>'categorias','action'=>'index'),null,true); ?>"><span>Ver lista</span></a></p>
+
+<fieldset>
+	<legend>Adcionar categoria</legend>
+	<?php echo $this->form; ?>
+	
+	<small class="msg info">Informações:</small>
+	<p>
+		
+		Ao inserir categorias você deve adcionar o icone(25x22) e o marcador do mapa (37x43) <br/>
+		Ao inserir sub-categorias basta escolher a categoria pai e não precisa de colocar imagens<br/>
+		
+		<img src='/images/icon_ver.png' alt="Placeholder">Exemplo de icone do menu.<br/>
+		<img src='/images/marker_ver.png' alt="Placeholder">Exemplo de marcador do mapa.
+		
+	</p>
+</fieldset>
